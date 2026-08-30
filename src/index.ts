@@ -1,7 +1,7 @@
 import { Elysia } from "elysia";
+import { authController } from "./modules/auth/auth.controller";
 
-const app = new Elysia().get("/", () => "Hello Elysia").listen(3000);
-
-console.log(
-  `🦊 Elysia is running at ${app.server?.hostname}:${app.server?.port}`
-);
+new Elysia()
+  .get("/", () => "Hello")
+  .use(authController)
+  .listen(3000);
