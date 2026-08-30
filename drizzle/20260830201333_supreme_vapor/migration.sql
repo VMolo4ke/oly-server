@@ -1,0 +1,2 @@
+ALTER TABLE "chat" ADD COLUMN "creator_id" varchar;--> statement-breakpoint
+ALTER TABLE "chat" ADD CONSTRAINT "chat_creator_id_user_id_fkey" FOREIGN KEY ("creator_id") REFERENCES "user"("id") ON DELETE SET NULL;

@@ -15,6 +15,9 @@ export const chat = pgTable("chat", {
   id: varchar("id")
     .$default(() => createId())
     .primaryKey(),
+  creatorId: varchar("creator_id").references(() => user.id, {
+    onDelete: "set null",
+  }),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
