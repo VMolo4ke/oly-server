@@ -15,10 +15,28 @@ export const chat = pgTable("chat", {
   id: varchar("id")
     .$default(() => createId())
     .primaryKey(),
-  creatorId: varchar("creator_id").references(() => user.id, {
-    onDelete: "set null",
-  }),
+  creatorId: varchar("creator_id")
+    .references(() => user.id, {
+      onDelete: "set null",
+    })
+    .notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
+export const chatParticipant = pgTable("chat_participant", {
+  id: varchar("id")
+    .$default(() => createId())
+    .primaryKey(),
+
+  chatId: varchar("chat_id")
+    .notNull()
+    .references(() => chat.id, { onDelete: "cascade" }),
+
+  userId: varchar("user_id")
+    .notNull()
+    .references(() => user.id, { onDelete: "cascade" }),
+
+  joinedAt: timestamp("joined_at").defaultNow().notNull(),
 });
 
 export const message = pgTable("message", {
@@ -67,6 +85,7 @@ export const table = {
   user,
   chat,
   message,
+  chatParticipant,
   voiceCall,
   voiceParticipant,
 } as const;

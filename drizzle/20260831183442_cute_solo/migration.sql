@@ -1,0 +1,1 @@
+ALTER TABLE "chat" ALTER COLUMN "creator_id" SET NOT NULL;
