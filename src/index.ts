@@ -1,7 +1,8 @@
 import { Elysia } from "elysia";
 import { authController } from "./modules/auth/auth.controller";
-import { chatController } from "./modules/chat/chat.conroller";
+import { chatController } from "./modules/chat/chat.controller";
 import swagger from "@elysiajs/swagger";
+import { userController } from "./modules/user/user.controller";
 
 new Elysia()
   .get("/", () => "Hello")
@@ -19,4 +20,5 @@ new Elysia()
   )
   .use(authController)
   .use(chatController)
+  .use(userController)
   .listen(3000);
