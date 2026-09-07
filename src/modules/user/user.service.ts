@@ -10,7 +10,8 @@ export const userService = {
         email: table.user.email,
       })
       .from(table.user)
-      .where(eq(table.user.id, userId));
+      .where(eq(table.user.id, userId))
+      .then((res) => res[0]);
 
     return userInfo;
   },
