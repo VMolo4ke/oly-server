@@ -3,9 +3,14 @@ import { authController } from "./modules/auth/auth.controller";
 import { chatController } from "./modules/chat/chat.controller";
 import swagger from "@elysiajs/swagger";
 import { userController } from "./modules/user/user.controller";
+import { cors } from "@elysia/cors";
 
 new Elysia()
-  .get("/", () => "Hello")
+  .use(
+    cors({
+      origin: "*",
+    }),
+  )
   .use(
     swagger({
       documentation: {
